@@ -1,0 +1,14 @@
+#+TITLE: Material Design Component ClojureScript Test
+#+AUTHOR: Josef Pospíšil
+#+DATE: <2017-05-31 st> 
+
+* Intro
+
+This repository contains my playground for combining Google's Material Design
+Components with ClojureScript SPA.
+
+* Running
+
+You need to have clojure and boot installed.
+
+~> boot dev~
