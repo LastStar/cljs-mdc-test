@@ -1,0 +1,11 @@
+{
+  "name": "mdc-test",
+  "version": "1.0.0",
+  "description": "Testing mdc",
+  "main": "app.js",
+  "author": "Josef Pospisil",
+  "license": "MIT",
+  "dependencies": {
+    "material-components-web": "^0.12.1"
+  }
+}
