@@ -17,7 +17,7 @@
 
 (def ^:const icon-menu [:a.material-icons "menu"])
 
-(def ^:const icon-account [:a.material-icons "account_circle"])
+(def ^:const icon-link :a.material-icons)
 
 (def ^:const typo-display-3 :div.mdc-typography--display3)
 
@@ -50,7 +50,7 @@
 
 
 (rum/defc textfield < {:did-mount attach-textfield}
-  [input-name label opts]
+  [opts input-name label]
   (let [id (keyword (str (name input-name) "-input"))]
     [:div.mdc-textfield
      [:input.mdc-textfield__input (merge {:id id :name input-name} opts)]
@@ -61,11 +61,21 @@
   (-> state :rum/react-component .-_reactInternalInstance .-_renderedComponent .-_hostNode js/mdc.ripple.MDCRipple.attachTo))
 
 
-(rum/defc button-primary < {:did-mount attach-ripple}
+(rum/defc dialog-primary-button < {:did-mount attach-ripple}
   [label]
-  [:button.mdc-button.mdc-button--raised.mdc-button--primary label])
+  [:button.mdc-button.mdc-button__dialog__footer_button.mdc-button--primary.mdc-button--accent label])
+
+
+(rum/defc dialog-button < {:did-mount attach-ripple}
+  [opts label]
+  [:button.mdc-button.mdc-button__dialog__footer_button opts label])
+
+
+(rum/defc primary-button < {:did-mount attach-ripple}
+  [opts label]
+  [:button.mdc-button.mdc-button--primary.mdc-button--accent opts label])
 
 
 (rum/defc button < {:did-mount attach-ripple}
-  [label]
-  [:button.mdc-button label])
+  [opts label]
+  [:button.mdc-button opts label])
