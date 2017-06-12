@@ -41,16 +41,16 @@ main {
     padding-right: 1rem;
 }
 
-.textfield-wrapper {
-    padding: 0 0 0.5rem 0;
-}
-
-.mdc-textfield {
+.mdc-form-field {
     width: calc(50% - 1rem);
     margin-right: 1rem;
+    vertical-align: baseline;
+}
+.mdc-form-field.short {
+    width: calc(25% - 1rem);
 }
 
-input.mdc-textfield__input {
+.mdc-form-field > .mdc-textfield, input.mdc-textfield__input, select.mdc-select {
     width: 100%;
 }
 

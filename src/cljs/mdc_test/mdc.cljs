@@ -45,8 +45,29 @@
 
 (def ^:const list-item :li.mdc-list-item)
 
+(def ^:const dialog :aside.mdc-dialog)
+
+(def ^:const dialog-surface :div.mdc-dialog__surface)
+
+(def ^:const dialog-header :header.mdc-dialog__header)
+
+(def ^:const dialog-header-title :h2.mdc-dialog__header__title)
+
+(def ^:const dialog-body :div.mdc-dialog__body)
+
+(def ^:const dialog-footer :footer.mdc-dialog__footer)
+
+(def ^:const dialog-backdrop :div.mdc-dialog__backdrop)
+
+(def ^:const form-field :div.mdc-form-field)
+
+(def ^:const short-form-field :div.mdc-form-field.short)
+
+(def ^:const select :select#country.mdc-select)
+
 (defn- attach-textfield [state]
-  (-> state :rum/react-component .-_reactInternalInstance .-_renderedComponent .-_hostNode js/mdc.textfield.MDCTextfield.attachTo))
+  (-> state :rum/react-component .-_reactInternalInstance .-_renderedComponent .-_hostNode js/mdc.textfield.MDCTextfield.attachTo)
+  state)
 
 
 (rum/defc textfield < {:did-mount attach-textfield}
@@ -58,12 +79,13 @@
 
 
 (defn- attach-ripple [state]
-  (-> state :rum/react-component .-_reactInternalInstance .-_renderedComponent .-_hostNode js/mdc.ripple.MDCRipple.attachTo))
+  (-> state :rum/react-component .-_reactInternalInstance .-_renderedComponent .-_hostNode js/mdc.ripple.MDCRipple.attachTo)
+  state)
 
 
 (rum/defc dialog-primary-button < {:did-mount attach-ripple}
-  [label]
-  [:button.mdc-button.mdc-button__dialog__footer_button.mdc-button--primary.mdc-button--accent label])
+  [opts label]
+  [:button.mdc-button.mdc-button__dialog__footer_button.mdc-button--primary.mdc-button--accent opts label])
 
 
 (rum/defc dialog-button < {:did-mount attach-ripple}
@@ -73,9 +95,27 @@
 
 (rum/defc primary-button < {:did-mount attach-ripple}
   [opts label]
-  [:button.mdc-button.mdc-button--primary.mdc-button--accent opts label])
+  [:button.mdc-button.mdc-button--raised.mdc-button--primary.mdc-button--accent opts label])
 
 
 (rum/defc button < {:did-mount attach-ripple}
   [opts label]
   [:button.mdc-button opts label])
+
+(def attach-dialog
+  {:did-mount
+   (fn [state]
+     (-> state :rum/react-component .-_reactInternalInstance .-_renderedComponent .-_hostNode js/mdc.dialog.MDCDialog.attachTo)
+     state)})
+
+(rum/defc checkbox [opts]
+  [:div.mdc-checkbox
+   [:input.mdc-checkbox__native-control
+    opts]
+   [:div.mdc-checkbox__background
+    [:svg.mdc-checkbox__checkmark
+     {:view-box "0 0 24 24"}
+     [:path.mdc-checkbox__checkmark__path
+      {:fill "none"
+       :stroke "white"
+       :d "M1.73,12.91 8.1,19.28 22.79,4.59"}]]]])
